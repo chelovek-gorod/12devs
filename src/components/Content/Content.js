@@ -49,7 +49,7 @@ function Content(props) {
 
     
     function outputCurrencies() {
-        return props.currencies.map(currency => <Currency key={newKey()} abbreviation={currency.abbreviation} name={currency.name} scale={currency.scale} rate={currency.rate} />);
+        return props.currencies.map(currency => <Currency key={newKey()} abbreviation={currency.abbreviation} name={currency.name} scale={currency.scale} rate={currency.rate} addToFavorite={props.addToFavorite} />);
     }
     
     console.log('props', props);
