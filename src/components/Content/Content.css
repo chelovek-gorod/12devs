@@ -3,3 +3,12 @@
     color: #00b6ff;
     background-color: #00000099;
 }
+
+.main-currency {
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.main-currency span {
+    color: #ffffff;
+}

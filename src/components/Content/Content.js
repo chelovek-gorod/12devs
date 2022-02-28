@@ -49,6 +49,9 @@ function Content(props) {
         props.loadCurrencies(currenciesArr);
     }
 
+    function outputMainCurrency() {
+        return (<div className="main-currency">ОСНОВНАЯ ВАЛЮТА : <span>BYN</span> Беларуский рубль</div>);
+    }
     
     function outputCurrencies() {
         return props.currencies.map(currency => <Currency key={newKey()} abbreviation={currency.abbreviation} name={currency.name} scale={currency.scale} rate={currency.rate} addToFavorite={props.addToFavorite} />);
@@ -63,6 +66,7 @@ function Content(props) {
 
     return (
         <div className="content border">
+            { outputMainCurrency() }
             { outputCurrencies() }
         </div>
     );
