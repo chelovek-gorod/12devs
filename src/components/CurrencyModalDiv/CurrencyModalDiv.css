@@ -1,0 +1,49 @@
+.currency-div {
+    display: inline-block;
+    margin: 10px;
+    box-sizing: border-box;
+    height: 34px;
+    cursor: pointer;
+}
+
+.currency-div div {
+    display: table-cell;
+    box-sizing: border-box;
+    height: 30px;
+    border: solid 2px #ffffff;
+}
+
+.currency-abbreviation {
+    position: relative;
+    top: 0;
+    width: 60px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 30px;
+    color: #ffffff;
+    border: solid 2px #ffffff;
+    border-radius: 15px 0 0 15px;
+    background-color: #00b6ff;
+    transition: top .3s ease-in-out;
+}
+
+.currency-name {
+    width: 110px;
+    padding: 0 5px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #00b6ff;
+    vertical-align: middle;
+    border-radius: 0 15px 15px 0;
+    overflow: hidden;
+    transition: color .3s ease-in-out;
+}
+
+.currency-div:hover .currency-abbreviation {
+    top: -3px;
+}
+
+.currency-div:hover .currency-name {
+    color: #ffffff;
+}

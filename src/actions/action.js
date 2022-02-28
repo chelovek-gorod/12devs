@@ -21,3 +21,15 @@ export function loadCurrencies(currenciesArr) {
        type: 'LOAD_CURRENCIES', currenciesArr
     }
 }
+
+export function showModal() {
+    return {
+       type: 'SHOW_MODAL'
+    }
+}
+
+export function hideModal() {
+    return {
+       type: 'HIDE_MODAL'
+    }
+}

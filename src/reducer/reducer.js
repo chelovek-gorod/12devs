@@ -1,7 +1,8 @@
 const initialState = {
     currenciesArr : [], //{ abbreviation : 'USD', name : 'Доллар США', scale : 1, rate : 2.75 }
     baseCurrency : 'BYN', // user can change it
-    favoritesArr : ['USD', 'EUR', 'RUB', 'UAH']
+    favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
+    modalIs : false
 };
  
  const reducer = (state = initialState, action) => {
@@ -19,6 +20,12 @@ const initialState = {
             return obj;
         case 'LOAD_CURRENCIES':
             obj.currenciesArr = [...action.currenciesArr];
+            return obj;
+        case 'SHOW_MODAL':
+            obj.modalIs = true;
+            return obj;
+        case 'HIDE_MODAL':
+            obj.modalIs = false;
             return obj;
         default: return state;
     }

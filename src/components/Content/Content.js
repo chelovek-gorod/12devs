@@ -2,9 +2,9 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 
 import { connect } from 'react-redux';
-import { setBase, addToFavorite, removeFromFavorite, loadCurrencies } from '../../actions/action';
+import { setBase, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal } from '../../actions/action';
 
-import Currency from '../Currency/Currency';
+import ModalCurrenciesList from '../ModalCurrenciesList/ModalCurrenciesList';
 
 /*
 import Converter from '../Converter/Converter';
@@ -24,16 +24,15 @@ function Content(props) {
             .catch((error) => {
                 console.log(error);
             })
-    }
-
-    function getKey() {
-        let key = 0;
-        return function() { return key++; }
-    }
-    let newKey = getKey();
+    } 
 
     function setCurrenciesToStore(currencies) {
-        let currenciesArr = [];
+        let currenciesArr = [{
+            abbreviation: 'BYN',
+            name: 'Беларуский рубль',
+            scale: 1,
+            rate: 1
+        }];
         let arrSize = currencies.length;
         for (let i = 0; i < arrSize; i++) {
             let currency = currencies[i];
@@ -48,14 +47,6 @@ function Content(props) {
         }
         props.loadCurrencies(currenciesArr);
     }
-
-    function outputMainCurrency() {
-        return (<div className="main-currency">ОСНОВНАЯ ВАЛЮТА : <span>BYN</span> Беларуский рубль</div>);
-    }
-    
-    function outputCurrencies() {
-        return props.currencies.map(currency => <Currency key={newKey()} abbreviation={currency.abbreviation} name={currency.name} scale={currency.scale} rate={currency.rate} addToFavorite={props.addToFavorite} />);
-    }
     
     console.log('props', props);
 
@@ -64,10 +55,16 @@ function Content(props) {
         return (<div className="content border"><div className="top-bottom-box top"><span className="title">Loading...</span></div></div>);
     }
 
+    if (props.modalIs) {
+        return ( <ModalCurrenciesList currenciesArr={props.currenciesArr} clickAction={props.setBase} hideModal={props.hideModal}/> );
+    }
+
+    console.log('props.modalIs', props.modalIs);
     return (
         <div className="content border">
-            { outputMainCurrency() }
-            { outputCurrencies() }
+            { /*outputMainCurrency()*/ }
+            { /*outputCurrencies()*/ }
+            <button onClick={props.showModal}>Popup</button>
         </div>
     );
 
@@ -80,8 +77,9 @@ const mapStateToProps = (state) => {
     if (state.currenciesArr.length === 0) return {loading : true};
     return {
         baseCurrency : state.baseCurrency,
-        currencies : state.currenciesArr,
-        favoritesArr : state.favoritesArr
+        currenciesArr : state.currenciesArr,
+        favoritesArr : state.favoritesArr,
+        modalIs : state.modalIs
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -89,7 +87,9 @@ const mapDispatchToProps = (dispatch) => {
         loadCurrencies: (currenciesArr) => dispatch(loadCurrencies(currenciesArr)),
         setBase: (base) => dispatch(setBase(base)),
         addToFavorite: (favoriteAdd) => dispatch(addToFavorite(favoriteAdd)),
-        removeFromFavorite: (favoriteRemove) => dispatch(removeFromFavorite(favoriteRemove))
+        removeFromFavorite: (favoriteRemove) => dispatch(removeFromFavorite(favoriteRemove)),
+        showModal: () => dispatch(showModal()),
+        hideModal: () => dispatch(hideModal())
     }
 };
 
