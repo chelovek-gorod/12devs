@@ -37,12 +37,14 @@ function Content(props) {
         let arrSize = currencies.length;
         for (let i = 0; i < arrSize; i++) {
             let currency = currencies[i];
-            currenciesArr.push( {
-                abbreviation: currency.Cur_Abbreviation,
-                name: currency.Cur_Name,
-                scale: currency.Cur_Scale,
-                rate: currency.Cur_OfficialRate
-            } );
+            if (currency.Cur_Abbreviation !== 'XDR') {
+                currenciesArr.push( {
+                    abbreviation: currency.Cur_Abbreviation,
+                    name: currency.Cur_Name,
+                    scale: currency.Cur_Scale,
+                    rate: currency.Cur_OfficialRate
+                } );
+            }
         }
         props.loadCurrencies(currenciesArr);
     }
