@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { setBase, addToFavorite, removeFromFavorite, loadCurrencies } from '../../actions/action';
 
+import Currency from '../Currency/Currency';
+
 /*
 import Converter from '../Converter/Converter';
 import Rates from '../Rates/Rates';
@@ -42,24 +44,24 @@ function Content(props) {
                 rate: currency.Cur_OfficialRate
             } );
         }
-        console.log(currenciesArr);
         props.loadCurrencies(currenciesArr);
     }
 
-    /*
+    
     function outputCurrencies() {
-        return props.Currencies.map(currency => <Albums key={newKey()} abbreviation={currency.abbreviation} name={currency.name} scale={currency.scale} rate={currency.rate} />);
+        return props.currencies.map(currency => <Currency key={newKey()} abbreviation={currency.abbreviation} name={currency.name} scale={currency.scale} rate={currency.rate} />);
     }
-    */
+    
+    console.log('props', props);
+
     if (props.loading) {
-        
         getCurrencies();
         return (<div className="content border"><div className="top-bottom-box top"><span className="title">Loading...</span></div></div>);
     }
 
     return (
         <div className="content border">
-            {/* outputCurrencies() */}
+            { outputCurrencies() }
         </div>
     );
 
@@ -68,11 +70,11 @@ function Content(props) {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 const mapStateToProps = (state) => {
-
+    console.log('state', state);
     if (state.currenciesArr.length === 0) return {loading : true};
     return {
         baseCurrency : state.baseCurrency,
-        currencies : state.currencies,
+        currencies : state.currenciesArr,
         favoritesArr : state.favoritesArr
     };
 };
