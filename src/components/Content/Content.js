@@ -1,16 +1,13 @@
 import React from 'react';
-//import ReactDOM from 'react-dom';
 
 import { connect } from 'react-redux';
 import { setBase, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal, setModalAction, changePage } from '../../actions/action';
 
 import Header from '../Header/Header';
-import ModalCurrenciesList from '../ModalCurrenciesList/ModalCurrenciesList';
-
-/*
-import Converter from '../Converter/Converter';
 import Rates from '../Rates/Rates';
-*/
+import Converter from '../Converter/Converter';
+
+import ModalCurrenciesList from '../ModalCurrenciesList/ModalCurrenciesList';
 
 import './Content.css';
 
@@ -75,7 +72,9 @@ function Content(props) {
     }
 
     function showContent() {
-        return ( <button onClick={props.showModal}>Popup</button> );
+        if (props.currentPage === 'rates') return ( <Rates /> );
+        if (props.currentPage === 'converter') return ( <Converter /> );
+        return ( <div className='page404'>404</div> );
     }
 
     return (
@@ -83,8 +82,10 @@ function Content(props) {
         <Header currentPage={props.currentPage} changePage={props.changePage} abbreviation={props.baseCurrency} name={getBaseName()}
                 showModal={props.showModal} setModalAction={props.setModalAction} actionModal={'setBase'} />
         <div className="content border">
-            { props.modalIs ? showModal() : showContent() }
+            { showContent() }
         </div>
+        { props.modalIs ? showModal() : null }
+        <footer>Разработал <span>Мирге Марсель</span></footer>
         </>
     );
 

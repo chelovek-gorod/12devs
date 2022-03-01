@@ -15,8 +15,8 @@ function HeaderPages(props) {
                 Конвертар
             </button>
             <button
-                className={ (props.currentPage === 'currencies')? "active" : "await" }
-                onClick={ (props.currentPage !== 'currencies')? () => props.changePage('currencies') : handleClick } >
+                className={ (props.currentPage === 'rates')? "active" : "await" }
+                onClick={ (props.currentPage !== 'rates')? () => props.changePage('rates') : handleClick } >
                 Все курсы
             </button>
         </nav>

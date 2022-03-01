@@ -11,11 +11,10 @@ function ModalCurrenciesList(props) {
     }
     let newKey = getKey();
 
-    // props.clickAction(props.abbreviation); props.hideModal;
-
     return (
         <div className='modal-shell'>
             <div className='modal'>
+                <div className='modal-close' onClick={props.hideModal}>x</div>
                 <div className='modal-title'>Выберите валюту</div>
                 <div className='modal-entry'>
                     { props.currenciesArr.map(currency => <CurrencyModalDiv key={newKey()} abbreviation={currency.abbreviation} name={currency.name} clickAction={props.clickAction} hideModal={props.hideModal} />) }

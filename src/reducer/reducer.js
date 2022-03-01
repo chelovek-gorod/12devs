@@ -4,7 +4,7 @@ const initialState = {
     favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
     modalIs : false,
     modalActionType : '', // 'setBase' , 'convertLeft', 'convertRight'
-    currentPage : 'converter' // 'currencies'
+    currentPage : 'converter' // 'rates'
 };
  
  const reducer = (state = initialState, action) => {

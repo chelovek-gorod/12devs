@@ -8,8 +8,6 @@ import HeaderPages from '../HeaderPages/HeaderPages';
 
 function Header(props) {
 
-    // setBaseCurrency={props.showModal} modalAction={props.setBase}
-
     return (
         <header>
             <div className="header-container">

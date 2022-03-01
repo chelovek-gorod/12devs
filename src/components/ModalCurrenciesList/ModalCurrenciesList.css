@@ -14,6 +14,7 @@
 }
   
 .modal {
+    position: relative;
     box-sizing: border-box;
     width: 640px;
     height: 480px;
@@ -21,6 +22,21 @@
     color: #ffffff;
     border: solid 1px #ffffff;
     background-color: #00ccff;
+}
+
+.modal-close {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    font-size: 60px;
+    transform: rotate(90deg);
+    color: #ffffff;
+    cursor: pointer;
+    transition: color .3s ease-in-out;
+}
+
+.modal-close:hover {
+    color: #00ccff;
 }
   
 .modal-title {
