@@ -48,8 +48,6 @@ function Content(props) {
         }
         props.loadCurrencies(currenciesArr);
     }
-    
-    console.log('props', props);
 
     if (props.loading) {
         getCurrencies();
@@ -60,10 +58,9 @@ function Content(props) {
         return ( <ModalCurrenciesList currenciesArr={props.currenciesArr} clickAction={props.setBase} hideModal={props.hideModal}/> );
     }
 
-    console.log('props.modalIs', props.modalIs);
     return (
         <>
-        <Header currenciesArr={props.currenciesArr} />
+        <Header currentPage={props.currentPage} changePage={props.changePage} currenciesArr={props.currenciesArr} />
         <div className="content border">
             { /*outputMainCurrency()*/ }
             { /*outputCurrencies()*/ }
@@ -77,8 +74,9 @@ function Content(props) {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 const mapStateToProps = (state) => {
-    console.log('state', state);
+
     if (state.currenciesArr.length === 0) return {loading : true};
+    
     return {
         baseCurrency : state.baseCurrency,
         currenciesArr : state.currenciesArr,
