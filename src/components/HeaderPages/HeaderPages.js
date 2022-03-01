@@ -12,7 +12,7 @@ function HeaderPages(props) {
             <button
                 className={ (props.currentPage === 'converter') ? "active" : "await" }
                 onClick={ (props.currentPage !== 'converter')? () => props.changePage('converter') : handleClick } >
-                Конвертар
+                Конвертер
             </button>
             <button
                 className={ (props.currentPage === 'rates')? "active" : "await" }

@@ -14,7 +14,7 @@ function Header(props) {
                 <img src={logo} alt="Finance logo" />
                 <HeaderPages currentPage={props.currentPage} changePage={props.changePage} />
                 <div className="base-currency" onClick={() => {props.setModalAction(props.actionModal); props.showModal();}} >
-                    <span>Валюта по умолчанью:</span>
+                    <span>Валюта по умолчанию:</span>
                     <CurrencyModalDiv abbreviation={props.abbreviation} name={props.name} />
                 </div>
             </div>

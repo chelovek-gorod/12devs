@@ -27,7 +27,7 @@ function Content(props) {
     function setCurrenciesToStore(currencies) {
         let currenciesArr = [{
             abbreviation: 'BYN',
-            name: 'Беларуский рубль',
+            name: 'Белорусский рубль',
             scale: 1,
             rate: 1
         }];
