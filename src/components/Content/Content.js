@@ -2,8 +2,9 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 
 import { connect } from 'react-redux';
-import { setBase, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal } from '../../actions/action';
+import { setBase, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal, changePage } from '../../actions/action';
 
+import Header from '../Header/Header';
 import ModalCurrenciesList from '../ModalCurrenciesList/ModalCurrenciesList';
 
 /*
@@ -61,11 +62,14 @@ function Content(props) {
 
     console.log('props.modalIs', props.modalIs);
     return (
+        <>
+        <Header currenciesArr={props.currenciesArr} />
         <div className="content border">
             { /*outputMainCurrency()*/ }
             { /*outputCurrencies()*/ }
             <button onClick={props.showModal}>Popup</button>
         </div>
+        </>
     );
 
 }
@@ -79,7 +83,8 @@ const mapStateToProps = (state) => {
         baseCurrency : state.baseCurrency,
         currenciesArr : state.currenciesArr,
         favoritesArr : state.favoritesArr,
-        modalIs : state.modalIs
+        modalIs : state.modalIs,
+        currentPage : state.currentPage
     };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -89,7 +94,8 @@ const mapDispatchToProps = (dispatch) => {
         addToFavorite: (favoriteAdd) => dispatch(addToFavorite(favoriteAdd)),
         removeFromFavorite: (favoriteRemove) => dispatch(removeFromFavorite(favoriteRemove)),
         showModal: () => dispatch(showModal()),
-        hideModal: () => dispatch(hideModal())
+        hideModal: () => dispatch(hideModal()),
+        changePage: (pageName) => dispatch(changePage(pageName))
     }
 };
 

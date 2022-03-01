@@ -2,31 +2,35 @@ const initialState = {
     currenciesArr : [], //{ abbreviation : 'USD', name : 'Доллар США', scale : 1, rate : 2.75 }
     baseCurrency : 'BYN', // user can change it
     favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
-    modalIs : false
+    modalIs : false,
+    currentPage : 'converter' // 'currencies'
 };
  
  const reducer = (state = initialState, action) => {
  
-    let obj = Object.assign({}, state);
+    let stateCopy = Object.assign({}, state);
     switch (action.type) {
         case 'SET_BASE':
-            obj.baseCurrency = action.base;
-            return obj;
+            stateCopy.baseCurrency = action.base;
+            return stateCopy;
         case 'ADD_TO_FAVORITE':
-            obj.favoritesArr.push(action.favoriteAdd);
-            return obj;
+            stateCopy.favoritesArr.push(action.favoriteAdd);
+            return stateCopy;
         case 'REMOVE_FROM_FAVORITE':
-            obj.favoritesArr = obj.favoritesArr.filter(currency => currency !== action.favoriteRemove);
-            return obj;
+            stateCopy.favoritesArr = stateCopy.favoritesArr.filter(currency => currency !== action.favoriteRemove);
+            return stateCopy;
         case 'LOAD_CURRENCIES':
-            obj.currenciesArr = [...action.currenciesArr];
-            return obj;
+            stateCopy.currenciesArr = [...action.currenciesArr];
+            return stateCopy;
         case 'SHOW_MODAL':
-            obj.modalIs = true;
-            return obj;
+            stateCopy.modalIs = true;
+            return stateCopy;
         case 'HIDE_MODAL':
-            obj.modalIs = false;
-            return obj;
+            stateCopy.modalIs = false;
+            return stateCopy;
+        case 'CHANGE_PAGE':
+            stateCopy.currentPage = action.pageName;
+            return stateCopy;
         default: return state;
     }
  }

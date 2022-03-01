@@ -33,3 +33,9 @@ export function hideModal() {
        type: 'HIDE_MODAL'
     }
 }
+
+export function changePage(pageName) {
+    return {
+       type: 'CHANGE_PAGE', pageName
+    }
+}
