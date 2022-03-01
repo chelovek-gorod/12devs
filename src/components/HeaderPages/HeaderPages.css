@@ -9,7 +9,6 @@ nav button {
     line-height: 100%;
     padding: auto 20px;
     padding: 10px 20px;
-    color: #4d4d4d;
     border: 2px solid #00ccff;
     background-color: transparent;
     cursor: pointer;
@@ -19,4 +18,13 @@ nav button {
     color: #ffffff;
     border-color:#ffffff;
     cursor: default;
+}
+
+.await {
+    color: #4d4d4d;
+    transition: color .3s ease-in-out;
+}
+
+.await:hover {
+    color: #ffffff;
 }

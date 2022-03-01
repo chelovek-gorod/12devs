@@ -23,8 +23,7 @@
     line-height: 30px;
     color: #ffffff;
     border: solid 2px #ffffff;
-    border-radius: 15px 0 0 15px;
-    background-color: #00b6ff;
+    background-color: #00ccff;
     transition: top .3s ease-in-out;
 }
 
@@ -33,9 +32,9 @@
     padding: 0 5px;
     font-size: 12px;
     line-height: 12px;
-    color: #00b6ff;
+    color: #4d4d4d;
     vertical-align: middle;
-    border-radius: 0 15px 15px 0;
+    background-color: #ffffff;
     overflow: hidden;
     transition: color .3s ease-in-out;
 }
@@ -45,5 +44,5 @@
 }
 
 .currency-div:hover .currency-name {
-    color: #ffffff;
+    color: #00ccff;
 }

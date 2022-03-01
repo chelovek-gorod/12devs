@@ -11,7 +11,16 @@ function ModalCurrenciesList(props) {
     }
     let newKey = getKey();
 
-    return props.currenciesArr.map(currency => <CurrencyModalDiv key={newKey()} abbreviation={currency.abbreviation} name={currency.name} clickAction={props.clickAction} hideModal={props.hideModal} />);
+    // props.clickAction(props.abbreviation); props.hideModal;
+
+    return (
+        <div className='modal-shell'>
+            <div className='modal'>
+                <div className='modal-title'>Выберите валюту</div>
+                { props.currenciesArr.map(currency => <CurrencyModalDiv key={newKey()} abbreviation={currency.abbreviation} name={currency.name} clickAction={props.clickAction} hideModal={props.hideModal} />) }
+            </div>
+        </div>
+    );
 }
 
 export default ModalCurrenciesList;

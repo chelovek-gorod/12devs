@@ -3,6 +3,7 @@ const initialState = {
     baseCurrency : 'BYN', // user can change it
     favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
     modalIs : false,
+    modalActionType : '', // 'setBase' , 'convertLeft', 'convertRight'
     currentPage : 'converter' // 'currencies'
 };
  
@@ -27,6 +28,9 @@ const initialState = {
             return stateCopy;
         case 'HIDE_MODAL':
             stateCopy.modalIs = false;
+            return stateCopy;
+        case 'SET_MODAL_ACTION':
+            stateCopy.modalActionType = action.modalActionType;
             return stateCopy;
         case 'CHANGE_PAGE':
             stateCopy.currentPage = action.pageName;

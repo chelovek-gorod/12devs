@@ -14,15 +14,15 @@
 }
   
 .modal {
-    position: relative;
-    width: 320px;
-    height: 220px;
-    padding: 12px;
+    box-sizing: border-box;
+    width: 640px;
+    height: 480px;
+    text-align: center;
+    overflow-y: scroll;
+    padding: 15px;
     color: #ffffff;
     border: solid 1px #ffffff;
-    border-radius: 12px;
-    background-color: #00000099;
-    box-shadow: 0 0 7px 5px #00b7ff;
+    background-color: #00ccff;
 }
   
 .modal-title {

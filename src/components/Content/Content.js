@@ -2,7 +2,7 @@ import React from 'react';
 //import ReactDOM from 'react-dom';
 
 import { connect } from 'react-redux';
-import { setBase, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal, changePage } from '../../actions/action';
+import { setBase, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal, setModalAction, changePage } from '../../actions/action';
 
 import Header from '../Header/Header';
 import ModalCurrenciesList from '../ModalCurrenciesList/ModalCurrenciesList';
@@ -49,22 +49,41 @@ function Content(props) {
         props.loadCurrencies(currenciesArr);
     }
 
+    function getBaseName() {
+        let baseCurrencyObject = props.currenciesArr.find(currency => currency.abbreviation === props.baseCurrency);
+        return baseCurrencyObject.name;
+    }
+
     if (props.loading) {
         getCurrencies();
         return (<div className="content border"><div className="top-bottom-box top"><span className="title">Loading...</span></div></div>);
     }
 
-    if (props.modalIs) {
-        return ( <ModalCurrenciesList currenciesArr={props.currenciesArr} clickAction={props.setBase} hideModal={props.hideModal}/> );
+    console.log('props.modalIs', props.modalIs);
+
+    function showModal() {
+        let modalActionType;
+        switch (props.modalActionType) {
+            case 'setBase' : modalActionType = props.setBase; break;
+            case 'convertLeft' : modalActionType = props.setBase; break;
+            case 'convertRight' : modalActionType = props.setBase; break;
+            default: modalActionType = 'return';
+        }
+        if(modalActionType === 'return') return;
+
+        return ( <ModalCurrenciesList currenciesArr={props.currenciesArr} clickAction={modalActionType} hideModal={props.hideModal} /> );
+    }
+
+    function showContent() {
+        return ( <button onClick={props.showModal}>Popup</button> );
     }
 
     return (
         <>
-        <Header currentPage={props.currentPage} changePage={props.changePage} currenciesArr={props.currenciesArr} />
+        <Header currentPage={props.currentPage} changePage={props.changePage} abbreviation={props.baseCurrency} name={getBaseName()}
+                showModal={props.showModal} setModalAction={props.setModalAction} actionModal={'setBase'} />
         <div className="content border">
-            { /*outputMainCurrency()*/ }
-            { /*outputCurrencies()*/ }
-            <button onClick={props.showModal}>Popup</button>
+            { props.modalIs ? showModal() : showContent() }
         </div>
         </>
     );
@@ -76,12 +95,13 @@ function Content(props) {
 const mapStateToProps = (state) => {
 
     if (state.currenciesArr.length === 0) return {loading : true};
-    
+
     return {
         baseCurrency : state.baseCurrency,
         currenciesArr : state.currenciesArr,
         favoritesArr : state.favoritesArr,
         modalIs : state.modalIs,
+        modalActionType : state.modalActionType,
         currentPage : state.currentPage
     };
 };
@@ -93,6 +113,7 @@ const mapDispatchToProps = (dispatch) => {
         removeFromFavorite: (favoriteRemove) => dispatch(removeFromFavorite(favoriteRemove)),
         showModal: () => dispatch(showModal()),
         hideModal: () => dispatch(hideModal()),
+        setModalAction: (modalActionType) => dispatch(setModalAction(modalActionType)),
         changePage: (pageName) => dispatch(changePage(pageName))
     }
 };

@@ -34,6 +34,12 @@ export function hideModal() {
     }
 }
 
+export function setModalAction(modalActionType) {
+    return {
+       type: 'SET_MODAL_ACTION', modalActionType
+    }
+}
+
 export function changePage(pageName) {
     return {
        type: 'CHANGE_PAGE', pageName
