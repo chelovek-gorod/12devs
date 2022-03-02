@@ -9,16 +9,16 @@ const initialState = {
  
  const reducer = (state = initialState, action) => {
  
-    let stateCopy = Object.assign({}, state);
+    let stateCopy = Object.assign({}, state); console.log('stateCopy', stateCopy);
     switch (action.type) {
         case 'SET_BASE':
             stateCopy.baseCurrency = action.base;
             return stateCopy;
         case 'ADD_TO_FAVORITE':
-            stateCopy.favoritesArr.push(action.favoriteAdd);
+            stateCopy.favoritesArr.push(action.currency);
             return stateCopy;
         case 'REMOVE_FROM_FAVORITE':
-            stateCopy.favoritesArr = stateCopy.favoritesArr.filter(currency => currency !== action.favoriteRemove);
+            stateCopy.favoritesArr = stateCopy.favoritesArr.filter(currency => currency !== action.currency);
             return stateCopy;
         case 'LOAD_CURRENCIES':
             stateCopy.currenciesArr = [...action.currenciesArr];

@@ -47,16 +47,11 @@ function Content(props) {
     }
 
     function getBaseName() {
-        let baseCurrencyObject = props.currenciesArr.find(currency => currency.abbreviation === props.baseCurrency);
-        return baseCurrencyObject.name;
+        if (props.currenciesArr.length) {
+            let baseCurrencyObject = props.currenciesArr.find(currency => currency.abbreviation === props.baseCurrency);
+            return baseCurrencyObject.name;
+        } else return 'Белорусский рубль';
     }
-
-    if (props.loading) {
-        getCurrencies();
-        return (<div className="content border"><div className="top-bottom-box top"><span className="title">Loading...</span></div></div>);
-    }
-
-    console.log('props.modalIs', props.modalIs);
 
     function showModal() {
         let modalActionType;
@@ -72,16 +67,25 @@ function Content(props) {
     }
 
     function showContent() {
-        if (props.currentPage === 'rates') return ( <Rates /> );
+        if (props.currenciesArr.length === 0) {
+            getCurrencies();
+            return (<div className="title">Loading...</div>);
+        }
+        if (props.currentPage === 'rates') {
+            return (
+                <Rates abbreviation={props.baseCurrency} name={getBaseName()} currenciesArr={props.currenciesArr}
+                        favoritesArr={props.favoritesArr} addToFavorite={props.addToFavorite} removeFromFavorite={props.removeFromFavorite} />
+            );
+        } 
         if (props.currentPage === 'converter') return ( <Converter /> );
         return ( <div className='page404'>404</div> );
     }
 
     return (
         <>
-        <Header currentPage={props.currentPage} changePage={props.changePage} abbreviation={props.baseCurrency} name={getBaseName()}
+        <Header currentPage={props.currentPage} changePage={props.changePage} ready={Boolean(props.currenciesArr.length)} abbreviation={props.baseCurrency} name={getBaseName()}
                 showModal={props.showModal} setModalAction={props.setModalAction} actionModal={'setBase'} />
-        <div className="content border">
+        <div className="content">
             { showContent() }
         </div>
         { props.modalIs ? showModal() : null }
@@ -94,8 +98,6 @@ function Content(props) {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 const mapStateToProps = (state) => {
-
-    if (state.currenciesArr.length === 0) return {loading : true};
 
     return {
         baseCurrency : state.baseCurrency,
@@ -110,8 +112,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadCurrencies: (currenciesArr) => dispatch(loadCurrencies(currenciesArr)),
         setBase: (base) => dispatch(setBase(base)),
-        addToFavorite: (favoriteAdd) => dispatch(addToFavorite(favoriteAdd)),
-        removeFromFavorite: (favoriteRemove) => dispatch(removeFromFavorite(favoriteRemove)),
+        addToFavorite: (currency) => dispatch(addToFavorite(currency)),
+        removeFromFavorite: (currency) => dispatch(removeFromFavorite(currency)),
         showModal: () => dispatch(showModal()),
         hideModal: () => dispatch(hideModal()),
         setModalAction: (modalActionType) => dispatch(setModalAction(modalActionType)),

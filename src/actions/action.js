@@ -4,15 +4,15 @@ export function setBase(base) {
     }
 }
 
-export function addToFavorite(favoriteAdd) {
+export function addToFavorite(currency) {
     return {
-       type: 'ADD_TO_FAVORITE', favoriteAdd
+       type: 'ADD_TO_FAVORITE', currency
     }
 }
 
-export function removeFromFavorite(favoriteRemove) {
+export function removeFromFavorite(currency) {
     return {
-       type: 'REMOVE_FROM_FAVORITE', favoriteRemove
+       type: 'REMOVE_FROM_FAVORITE', currency
     }
 }
 

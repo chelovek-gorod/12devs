@@ -5,7 +5,7 @@ function Converter(props) {
 
     return (
         <div>
-            Converter
+            <div className="title">Конвертер валют</div>
         </div>
     );
 }

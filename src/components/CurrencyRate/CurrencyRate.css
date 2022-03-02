@@ -1,0 +1,17 @@
+.rate-line {
+    padding: 5px;
+}
+
+.rate-line img {
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.rate-line .unfavorite {
+    filter: grayscale(1);
+}
+
+.rate-line span {
+    color: #4d4d4d;
+    font-weight: 700;
+}
