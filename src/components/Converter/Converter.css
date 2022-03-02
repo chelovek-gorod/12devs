@@ -1,0 +1,12 @@
+.converter-div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.converter-div + .equals{
+    font-size: 36px;
+}
+
+.converter-div .currency-div {
+    display: block;
+}

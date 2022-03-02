@@ -4,6 +4,18 @@ export function setBase(base) {
     }
 }
 
+export function setConvertCurrencyLeft(currency) {
+    return {
+       type: 'SET_CONVERT_CURRENCY_LEFT', currency
+    }
+}
+
+export function setConvertCurrencyRight(currency) {
+    return {
+       type: 'SET_CONVERT_CURRENCY_RIGHT', currency
+    }
+}
+
 export function addToFavorite(currency) {
     return {
        type: 'ADD_TO_FAVORITE', currency

@@ -11,7 +11,7 @@ function Currency(props) {
     }
 
     return (
-        <div className="currency-div" onClick={handleClick} >
+        <div className="currency-div" title='Выбрать валюту' onClick={handleClick} >
             <div className="currency-abbreviation">{ props.abbreviation }</div>
             <div className="currency-name">{ props.name }</div>
         </div>
