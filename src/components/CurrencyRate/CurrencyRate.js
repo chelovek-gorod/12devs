@@ -16,7 +16,8 @@ function CurrencyRate(props) {
 
     return (
         <div className='rate-line'>
-            <img src={favoriteImg} alt="Избранная валюта" title={(props.favorite) ? 'Удалить из избранных' : 'Добавить в избранные'} className={(props.favorite) ? 'favorite' : 'unfavorite'} onClick={handleClick} />
+            <img src={favoriteImg} alt="Избранная валюта" title={(props.favorite) ? 'Удалить из избранных' : 'Добавить в избранные'}
+                className={(props.favorite) ? 'favorite' : 'unfavorite'} onClick={handleClick} />
             {props.currency.scale} <span>{props.currency.abbreviation}</span> {props.currency.name} = {currentRate()} <span>{props.abbreviation}</span>
         </div>
     );

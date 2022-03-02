@@ -15,6 +15,8 @@ const initialState = {
             stateCopy.baseCurrency = action.base;
             return stateCopy;
         case 'ADD_TO_FAVORITE':
+            // just stateCopy.favoritesArr.push(action.currency) not updated component
+            stateCopy.favoritesArr = stateCopy.favoritesArr.filter(currency => currency !== action.currency);
             stateCopy.favoritesArr.push(action.currency);
             return stateCopy;
         case 'REMOVE_FROM_FAVORITE':
