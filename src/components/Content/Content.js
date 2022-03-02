@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { setBase, setConvertCurrencyLeft, setConvertCurrencyRight, addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal, setModalAction, changePage } from '../../actions/action';
+import { setBase, setAbbreviationConvertLeft, setAbbreviationConvertRight,
+    setValueConvertLeft, setValueConvertRight,
+    addToFavorite, removeFromFavorite, loadCurrencies,
+    showModal, hideModal, setModalAction, changePage
+} from '../../actions/action';
 
 import Header from '../Header/Header';
 import Rates from '../Rates/Rates';
@@ -57,13 +61,15 @@ function Content(props) {
         let modalActionType;
         switch (props.modalActionType) {
             case 'setBase' : modalActionType = props.setBase; break;
-            case 'convertLeft' : modalActionType = props.setConvertCurrencyLeft; break;
-            case 'convertRight' : modalActionType = props.setConvertCurrencyRight; break;
+            case 'convertLeft' : modalActionType = props.setAbbreviationConvertLeft; break;
+            case 'convertRight' : modalActionType = props.setAbbreviationConvertRight; break;
             default: modalActionType = 'return';
         }
         if(modalActionType === 'return') return;
 
-        return ( <ModalCurrenciesList currenciesArr={props.currenciesArr} clickAction={modalActionType} hideModal={props.hideModal} /> );
+        return ( <ModalCurrenciesList currenciesArr={props.currenciesArr}
+            clickAction={modalActionType} hideModal={props.hideModal} />
+        );
     }
 
     function showContent() {
@@ -74,13 +80,16 @@ function Content(props) {
         if (props.currentPage === 'rates') {
             return (
                 <Rates abbreviation={props.baseCurrency} name={getBaseName()} currenciesArr={props.currenciesArr}
-                    favoritesArr={props.favoritesArr} addToFavorite={props.addToFavorite} removeFromFavorite={props.removeFromFavorite} />
+                    favoritesArr={props.favoritesArr}
+                    addToFavorite={props.addToFavorite} removeFromFavorite={props.removeFromFavorite} />
             );
         } 
         if (props.currentPage === 'converter') {
-            return ( <Converter currenciesArr={props.currenciesArr} convertCurrencyLeft={props.convertCurrencyLeft} convertCurrencyRight={props.convertCurrencyRight}
+            return ( <Converter currenciesArr={props.currenciesArr}
+                convertLeft={props.convertLeft} convertRight={props.convertRight}
                 showModal={props.showModal} setModalAction={props.setModalAction}
-                setConvertCurrencyLeft={props.setConvertCurrencyLeft} setConvertCurrencyRight={props.setConvertCurrencyRight}  />
+                setValueConvertLeft={props.setValueConvertLeft}
+                setValueConvertRight={props.setValueConvertRight} />
             );
         } 
         return ( <div className='page404'>404</div> );
@@ -88,8 +97,10 @@ function Content(props) {
 
     return (
         <>
-        <Header currentPage={props.currentPage} changePage={props.changePage} ready={Boolean(props.currenciesArr.length)} abbreviation={props.baseCurrency} name={getBaseName()}
-                showModal={props.showModal} setModalAction={props.setModalAction} actionModal={'setBase'} />
+        <Header currentPage={props.currentPage} changePage={props.changePage} ready={Boolean(props.currenciesArr.length)}
+            abbreviation={props.baseCurrency} name={getBaseName()}
+            showModal={props.showModal} setModalAction={props.setModalAction} actionModal={'setBase'} />
+
         <div className="content">
             { showContent() }
         </div>
@@ -106,8 +117,8 @@ const mapStateToProps = (state) => {
 
     return {
         baseCurrency : state.baseCurrency,
-        convertCurrencyLeft : state.convertCurrencyLeft,
-        convertCurrencyRight : state.convertCurrencyRight,
+        convertLeft : state.convertLeft,
+        convertRight : state.convertRight,
         currenciesArr : state.currenciesArr,
         favoritesArr : state.favoritesArr,
         modalIs : state.modalIs,
@@ -119,8 +130,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         loadCurrencies: (currenciesArr) => dispatch(loadCurrencies(currenciesArr)),
         setBase: (base) => dispatch(setBase(base)),
-        setConvertCurrencyLeft : (currency) => dispatch(setConvertCurrencyLeft(currency)),
-        setConvertCurrencyRight : (currency) => dispatch(setConvertCurrencyRight(currency)),
+        setAbbreviationConvertLeft : (data) => dispatch(setAbbreviationConvertLeft(data)),
+        setAbbreviationConvertRight : (data) => dispatch(setAbbreviationConvertRight(data)),
+        setValueConvertLeft : (data) => dispatch(setValueConvertLeft(data)),
+        setValueConvertRight : (data) => dispatch(setValueConvertRight(data)),
         addToFavorite: (currency) => dispatch(addToFavorite(currency)),
         removeFromFavorite: (currency) => dispatch(removeFromFavorite(currency)),
         showModal: () => dispatch(showModal()),

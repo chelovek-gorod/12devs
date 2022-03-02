@@ -4,15 +4,27 @@ export function setBase(base) {
     }
 }
 
-export function setConvertCurrencyLeft(currency) {
+export function setAbbreviationConvertLeft(data) {
     return {
-       type: 'SET_CONVERT_CURRENCY_LEFT', currency
+       type: 'SET_ABBREVIATION_CONVERT_LEFT', data
     }
 }
 
-export function setConvertCurrencyRight(currency) {
+export function setAbbreviationConvertRight(data) {
     return {
-       type: 'SET_CONVERT_CURRENCY_RIGHT', currency
+       type: 'SET_ABBREVIATION_CONVERT_RIGHT', data
+    }
+}
+
+export function setValueConvertLeft(data) {
+    return {
+       type: 'SET_VALUE_CONVERT_LEFT', data
+    }
+}
+
+export function setValueConvertRight(data) {
+    return {
+       type: 'SET_VALUE_CONVERT_RIGHT', data
     }
 }
 

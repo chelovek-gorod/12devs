@@ -1,8 +1,8 @@
 const initialState = {
     currenciesArr : [], //{ abbreviation : 'USD', name : 'Доллар США', scale : 1, rate : 2.75 }
     baseCurrency : 'BYN', // user can change it
-    convertCurrencyLeft : 'USD',
-    convertCurrencyRight : 'EUR',
+    convertLeft : { abbreviation : 'USD', value: 0 },
+    convertRight : { abbreviation : 'EUR', value: 0 },
     favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
     modalIs : false,
     modalActionType : '', // 'setBase' , 'convertLeft', 'convertRight'
@@ -16,11 +16,17 @@ const initialState = {
         case 'SET_BASE':
             stateCopy.baseCurrency = action.base;
             return stateCopy;
-        case 'SET_CONVERT_CURRENCY_LEFT':
-            stateCopy.convertCurrencyLeft = action.currency;
+        case 'SET_ABBREVIATION_CONVERT_LEFT':
+            stateCopy.convertLeft.abbreviation = action.data;
             return stateCopy;
-        case 'SET_CONVERT_CURRENCY_RIGHT':
-            stateCopy.convertCurrencyRight = action.currency;
+        case 'SET_ABBREVIATION_CONVERT_RIGHT':
+            stateCopy.convertRight.abbreviation = action.data;
+            return stateCopy;
+        case 'SET_VALUE_CONVERT_LEFT':
+            stateCopy.convertLeft.value = action.data; console.log('action.data', action.data);
+            return stateCopy;
+        case 'SET_VALUE_CONVERT_RIGHT':
+            stateCopy.convertRight.value = action.data; console.log('action.data', action.data);
             return stateCopy;
         case 'ADD_TO_FAVORITE':
             // just stateCopy.favoritesArr.push(action.currency) not updated component
