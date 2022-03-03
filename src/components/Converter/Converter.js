@@ -30,7 +30,7 @@ function Converter(props) {
         let value = Math.abs(Number(inputValue));
         if (isNaN(value) || !isFinite(value)) return;
 
-        if(inputValue.length > 1 && inputValue[0] === '0' && inputValue[1] !== '.') {
+        if(inputValue[0] === '.' || (inputValue.length > 1 && inputValue[0] === '0' && inputValue[1] !== '.')) {
             inputValue = '0.' + inputValue.slice(2);
             value = Number(inputValue);
         } 
