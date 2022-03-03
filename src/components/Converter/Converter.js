@@ -5,8 +5,6 @@ import CurrencyModalDiv from '../CurrencyModalDiv/CurrencyModalDiv';
 
 function Converter(props) {
 
-    const [values, setValues] = React.useState({left: props.convertLeft.value, right: props.convertRight.value});
-
     let leftRate;
     let rightRate;
     for (let objCurr of props.currenciesArr) {
@@ -25,20 +23,29 @@ function Converter(props) {
             return currencyObject.name;
     }
 
+    const [values, setValues] = React.useState({left: props.convertLeft.value, right: props.convertRight.value});
+
     function handleChange(event, side) {
-        let value = Number(event.target.value);
+        let inputValue = (event.target.value).replace(',', '.');
+        let value = Number(inputValue);
+        if (!value || value < 0 || !isFinite(value)) return;
+
         let result = value * ((side === 'left') ? leftRate : rightRate);
         let leftValue, rightValue;
         if (side === 'left') {
-            leftValue = value.toFixed(2);
+            leftValue = inputValue;
             rightValue = result.toFixed(2);
         } else {
             leftValue = result.toFixed(2);
-            rightValue = value.toFixed(2);
+            rightValue = inputValue;
         }
         setValues({left: leftValue, right: rightValue});
         props.setConvertValues({left: leftValue, right: rightValue});
+        
     }
+
+    if(props.convertLeft.value === '---' && props.convertRight.value === '---')
+        setTimeout(() => setValues({left: '0', right: '0'}), 0);
 
     return (
         <div>
@@ -49,8 +56,8 @@ function Converter(props) {
                     <CurrencyModalDiv abbreviation={props.convertLeft.abbreviation}
                         name={getName(props.convertLeft.abbreviation)} />
                 </div>
-                <input key={props.convertLeft.value} value={values.left} onChange={(event) => handleChange(event, 'left')} 
-                    type='number' min='0' max='9999999999' step='1.00' />
+                <input type="text" maxLength={10} placeholder="0" value={values.left}
+                    onChange={(event) => handleChange(event, 'left')} />
             </div>
             <div className="converter-div equals"> = </div>
             <div className="converter-div">
@@ -58,8 +65,8 @@ function Converter(props) {
                     <CurrencyModalDiv abbreviation={props.convertRight.abbreviation}
                         name={getName(props.convertRight.abbreviation)} />
                 </div>
-                <input key={props.convertRight.value} value={values.right} onChange={(event) => handleChange(event, 'right')} 
-                    type='number' min='0' max='9999999999' step='1.00' />
+                <input type="text" maxLength={10} placeholder="0" value={values.right}
+                    onChange={(event) => handleChange(event, 'right')} />
             </div>
 
         </div>

@@ -1,8 +1,8 @@
 const initialState = {
     currenciesArr : [], //{ abbreviation : 'USD', name : 'Доллар США', scale : 1, rate : 2.75 }
     baseCurrency : 'BYN', // user can change it
-    convertLeft : { abbreviation : 'USD', value: '0' },
-    convertRight : { abbreviation : 'EUR', value: '0' },
+    convertLeft : { abbreviation : 'USD', value: '---' },
+    convertRight : { abbreviation : 'EUR', value: '---' },
     favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
     modalIs : false,
     modalActionType : '', // 'setBase' , 'convertLeft', 'convertRight'
@@ -18,11 +18,11 @@ const initialState = {
             return stateCopy;
         case 'SET_ABBREVIATION_CONVERT_LEFT':
             stateCopy.convertLeft.abbreviation = action.data;
-            stateCopy.convertLeft.value = stateCopy.convertRight.value = '0';
+            stateCopy.convertLeft.value = stateCopy.convertRight.value = '---';
             return stateCopy;
         case 'SET_ABBREVIATION_CONVERT_RIGHT':
             stateCopy.convertRight.abbreviation = action.data;
-            stateCopy.convertLeft.value = stateCopy.convertRight.value = '0';
+            stateCopy.convertLeft.value = stateCopy.convertRight.value = '---';
             return stateCopy;
         case 'SET_CONVERT_VALUES':
             console.log('action.data', action.data);
