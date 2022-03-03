@@ -11,7 +11,7 @@ const initialState = {
  
  const reducer = (state = initialState, action) => {
  
-    let stateCopy = Object.assign({}, state); console.log('stateCopy', stateCopy);
+    let stateCopy = Object.assign({}, state);
     switch (action.type) {
         case 'SET_BASE':
             stateCopy.baseCurrency = action.base;
@@ -25,7 +25,6 @@ const initialState = {
             stateCopy.convertLeft.value = stateCopy.convertRight.value = '---';
             return stateCopy;
         case 'SET_CONVERT_VALUES':
-            console.log('action.data', action.data);
             stateCopy.convertLeft.value = action.data.left;
             stateCopy.convertRight.value = action.data.right;
             return stateCopy;
