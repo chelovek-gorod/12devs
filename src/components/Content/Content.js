@@ -1,10 +1,8 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { setBase, setAbbreviationConvertLeft, setAbbreviationConvertRight,
-    setValueConvertLeft, setValueConvertRight,
-    addToFavorite, removeFromFavorite, loadCurrencies,
-    showModal, hideModal, setModalAction, changePage
+import { setBase, setAbbreviationConvertLeft, setAbbreviationConvertRight, setConvertValues,
+    addToFavorite, removeFromFavorite, loadCurrencies, showModal, hideModal, setModalAction, changePage
 } from '../../actions/action';
 
 import Header from '../Header/Header';
@@ -85,11 +83,8 @@ function Content(props) {
             );
         } 
         if (props.currentPage === 'converter') {
-            return ( <Converter currenciesArr={props.currenciesArr}
-                convertLeft={props.convertLeft} convertRight={props.convertRight}
-                showModal={props.showModal} setModalAction={props.setModalAction}
-                setValueConvertLeft={props.setValueConvertLeft}
-                setValueConvertRight={props.setValueConvertRight} />
+            return ( <Converter currenciesArr={props.currenciesArr} showModal={props.showModal} setModalAction={props.setModalAction}
+                convertLeft={props.convertLeft} convertRight={props.convertRight} setConvertValues={props.setConvertValues} />
             );
         } 
         return ( <div className='page404'>404</div> );
@@ -132,8 +127,7 @@ const mapDispatchToProps = (dispatch) => {
         setBase: (base) => dispatch(setBase(base)),
         setAbbreviationConvertLeft : (data) => dispatch(setAbbreviationConvertLeft(data)),
         setAbbreviationConvertRight : (data) => dispatch(setAbbreviationConvertRight(data)),
-        setValueConvertLeft : (data) => dispatch(setValueConvertLeft(data)),
-        setValueConvertRight : (data) => dispatch(setValueConvertRight(data)),
+        setConvertValues : (data) => dispatch(setConvertValues(data)),
         addToFavorite: (currency) => dispatch(addToFavorite(currency)),
         removeFromFavorite: (currency) => dispatch(removeFromFavorite(currency)),
         showModal: () => dispatch(showModal()),

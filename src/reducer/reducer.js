@@ -1,8 +1,8 @@
 const initialState = {
     currenciesArr : [], //{ abbreviation : 'USD', name : 'Доллар США', scale : 1, rate : 2.75 }
     baseCurrency : 'BYN', // user can change it
-    convertLeft : { abbreviation : 'USD', value: 0 },
-    convertRight : { abbreviation : 'EUR', value: 0 },
+    convertLeft : { abbreviation : 'USD', value: '0' },
+    convertRight : { abbreviation : 'EUR', value: '0' },
     favoritesArr : ['USD', 'EUR', 'RUB', 'UAH'],
     modalIs : false,
     modalActionType : '', // 'setBase' , 'convertLeft', 'convertRight'
@@ -18,15 +18,16 @@ const initialState = {
             return stateCopy;
         case 'SET_ABBREVIATION_CONVERT_LEFT':
             stateCopy.convertLeft.abbreviation = action.data;
+            stateCopy.convertLeft.value = stateCopy.convertRight.value = '0';
             return stateCopy;
         case 'SET_ABBREVIATION_CONVERT_RIGHT':
             stateCopy.convertRight.abbreviation = action.data;
+            stateCopy.convertLeft.value = stateCopy.convertRight.value = '0';
             return stateCopy;
-        case 'SET_VALUE_CONVERT_LEFT':
-            stateCopy.convertLeft.value = action.data; console.log('action.data', action.data);
-            return stateCopy;
-        case 'SET_VALUE_CONVERT_RIGHT':
-            stateCopy.convertRight.value = action.data; console.log('action.data', action.data);
+        case 'SET_CONVERT_VALUES':
+            console.log('action.data', action.data);
+            stateCopy.convertLeft.value = action.data.left;
+            stateCopy.convertRight.value = action.data.right;
             return stateCopy;
         case 'ADD_TO_FAVORITE':
             // just stateCopy.favoritesArr.push(action.currency) not updated component

@@ -16,15 +16,9 @@ export function setAbbreviationConvertRight(data) {
     }
 }
 
-export function setValueConvertLeft(data) {
+export function setConvertValues(data) {
     return {
-       type: 'SET_VALUE_CONVERT_LEFT', data
-    }
-}
-
-export function setValueConvertRight(data) {
-    return {
-       type: 'SET_VALUE_CONVERT_RIGHT', data
+       type: 'SET_CONVERT_VALUES', data
     }
 }
 

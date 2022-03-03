@@ -10,3 +10,13 @@
 .converter-div .currency-div {
     display: block;
 }
+
+.converter-div input {
+    box-sizing: border-box;
+    width: 170px;
+    border: solid 2px #ffffff;
+    background-color: inherit;
+    font-size: 18px;
+    padding: 4px;
+    text-align: center;
+}
