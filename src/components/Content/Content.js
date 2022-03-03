@@ -23,6 +23,7 @@ function Content(props) {
             })
             .catch((error) => {
                 console.log(error);
+                setTimeout(() => document.location.reload(), 1000)
             })
     } 
 
@@ -73,7 +74,7 @@ function Content(props) {
     function showContent() {
         if (props.currenciesArr.length === 0) {
             getCurrencies();
-            return (<div className="title">Loading...</div>);
+            return (<div className="title">Загрузка данных...</div>);
         }
         if (props.currentPage === 'rates') {
             return (

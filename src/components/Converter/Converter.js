@@ -36,8 +36,8 @@ function Converter(props) {
             leftValue = result.toFixed(2);
             rightValue = value.toFixed(2);
         }
-        props.setConvertValues({left: leftValue, right: rightValue});
         setValues({left: leftValue, right: rightValue});
+        props.setConvertValues({left: leftValue, right: rightValue});
     }
 
     return (
