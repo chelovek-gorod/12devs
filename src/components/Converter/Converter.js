@@ -26,9 +26,9 @@ function Converter(props) {
     const [values, setValues] = React.useState({left: props.convertLeft.value, right: props.convertRight.value});
 
     function handleChange(event, side) {
-        let inputValue = (event.target.value).replace(',', '.');
-        let value = Number(inputValue);
-        if (!value || value < 0 || !isFinite(value)) return;
+        let inputValue = (event.target.value).replace(',', '.'); console.log(inputValue);
+        let value = Math.abs(Number(inputValue));
+        if (isNaN(value) || !isFinite(value)) return;
 
         let result = value * ((side === 'left') ? leftRate : rightRate);
         let leftValue, rightValue;
@@ -44,8 +44,10 @@ function Converter(props) {
         
     }
 
-    if(props.convertLeft.value === '---' && props.convertRight.value === '---')
-        setTimeout(() => setValues({left: '0', right: '0'}), 0);
+    if(props.convertLeft.value === '---' && props.convertRight.value === '---') {
+        setValues({left: '0', right: '0'});
+        props.setConvertValues({left: '0', right: '0'});
+    }
 
     return (
         <div>
