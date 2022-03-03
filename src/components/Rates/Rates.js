@@ -36,8 +36,31 @@ function Rates(props) {
             <div className="title">Курсы валют</div>
             <div className="subtitle">для <span>{props.abbreviation}</span> {props.name}</div>
             <div className="rates-container">
-                { favoriteArr.map(currency => <CurrencyRate key={newKey()} favorite={true} currency={currency} abbreviation={props.abbreviation} scale={baseScale} rate={baseRate} clickAction={props.removeFromFavorite} />) }
-                { othersArr.map(currency => <CurrencyRate key={newKey()} favorite={false} currency={currency} abbreviation={props.abbreviation} scale={baseScale} rate={baseRate} clickAction={props.addToFavorite} />) }
+                <table>
+                    <tbody>
+                        { favoriteArr.map(currency => <CurrencyRate
+                            key={newKey()}
+                            favorite={true}
+                            currency={currency}
+                            abbreviation={props.abbreviation}
+                            scale={baseScale}
+                            rate={baseRate}
+                            clickAction={props.removeFromFavorite}
+                            />
+                        )}
+
+                        { othersArr.map(currency => <CurrencyRate
+                            favorite={false}
+                            key={newKey()}
+                            currency={currency}
+                            abbreviation={props.abbreviation}
+                            scale={baseScale}
+                            rate={baseRate}
+                            clickAction={props.addToFavorite}
+                            />
+                        )}
+                    </tbody>
+                </table>
             </div>
         </div>
     );
